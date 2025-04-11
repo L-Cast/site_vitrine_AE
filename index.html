@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conduite Zen - Auto-école à Lyon | Obtenez votre permis en toute confiance</title>
+    <meta name="description" content="L'auto-école Conduite Zen à Lyon propose des formations au permis de conduire professionnelles et sans stress pour voiture et moto. Obtenez votre permis avec nos moniteurs experts.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#10b981',
+                        accent: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero {
+            background: linear-gradient(rgba(30, 64, 175, 0.8), rgba(16, 185, 129, 0.6)), url('https://images.unsplash.com/photo-1543465077-db45d34b88a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .map-container {
+            height: 400px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                background-position: 70% center;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-car text-primary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-primary">Conduite Zen</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-primary px-3 py-2 font-medium hover:text-secondary">Accueil</a>
+                    <a href="#programs" class="text-gray-700 px-3 py-2 font-medium hover:text-primary">Formations</a>
+                    <a href="#pricing" class="text-gray-700 px-3 py-2 font-medium hover:text-primary">Tarifs</a>
+                    <a href="#reviews" class="text-gray-700 px-3 py-2 font-medium hover:text-primary">Avis</a>
+                    <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition">Nous contacter</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-primary">Accueil</a>
+                <a href="#programs" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary">Formations</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary">Tarifs</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary">Avis</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium bg-primary text-white">Nous contacter</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero text-white py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:w-2/3 lg:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Obtenez votre permis de conduire en toute sérénité à Lyon</h1>
+                <p class="text-xl md:text-2xl mb-8">Conduite Zen - L'auto-école qui allie efficacité, pédagogie et bienveillance.</p>
+                <a href="#contact" class="bg-white text-primary px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-100 transition duration-300 inline-block">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Notre emplacement à Lyon</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Venez nous rencontrer dans notre auto-école située au cœur de Lyon.</p>
+            </div>
+            <div class="map-container rounded-xl shadow-lg overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.755123693196!2d4.8357343155661!3d45.75781397910558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon%2C%20France!5e0!3m2!1sfr!2sfr!4v1689876543210" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs -->
+    <section id="programs" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos formations</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Nous proposons des formations complètes adaptées à vos besoins et à votre rythme d'apprentissage.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Permis B (Voiture)</h3>
+                    <p class="text-gray-600">Formation complète pour votre permis voiture avec nos moniteurs patients et expérimentés.</p>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Permis Moto (A, A2)</h3>
+                    <p class="text-gray-600">Formation spécialisée pour les permis moto, que vous soyez débutant ou en reconversion.</p>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Conduite accompagnée</h3>
+                    <p class="text-gray-600">Pour les jeunes conducteurs qui souhaitent acquérir de l'expérience avec un proche avant l'examen.</p>
+                </div>
+                
+                <!-- Program 4 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Conduite supervisée</h3>
+                    <p class="text-gray-600">Séances de pratique supplémentaires avec nos moniteurs pour perfectionner votre conduite.</p>
+                </div>
+                
+                <!-- Program 5 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Stage accéléré</h3>
+                    <p class="text-gray-600">Formation intensive pour ceux qui ont besoin d'obtenir rapidement leur permis.</p>
+                </div>
+                
+                <!-- Program 6 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Cours de code</h3>
+                    <p class="text-gray-600">Cours théoriques en présentiel ou en ligne pour préparer l'examen du code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos tarifs</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Des tarifs transparents pour toutes nos formations.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Price Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="text-primary text-2xl mb-2">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Permis B</h3>
+                        <p class="text-gray-600 mb-4">Forfait complet pour votre permis voiture.</p>
+                        <div class="text-3xl font-bold text-primary mb-4">à partir de 990€</div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>20 heures de conduite</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Cours de code</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Préparation à l'examen</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Price Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="text-primary text-2xl mb-2">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Conduite accompagnée</h3>
+                        <p class="text-gray-600 mb-4">Pour les jeunes conducteurs avec accompagnement.</p>
+                        <div class="text-3xl font-bold text-primary mb-4">à partir de 1050€</div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Formation initiale</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>2 rendez-vous pédagogiques</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Atelier sécurité routière</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Price Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="text-primary text-2xl mb-2">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Permis Moto</h3>
+                        <p class="text-gray-600 mb-4">Formation pour permis A ou A2.</p>
+                        <div class="text-3xl font-bold text-primary mb-4">à partir de 890€</div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>20 heures de conduite</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Équipement de sécurité</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Code de la route</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Price Card 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="text-primary text-2xl mb-2">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Stage intensif</h3>
+                        <p class="text-gray-600 mb-4">Obtenez rapidement votre permis.</p>
+                        <div class="text-3xl font-bold text-primary mb-4">à partir de 1290€</div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>30 heures en 2 semaines</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Planification prioritaire</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-secondary mr-2"></i>
+                                <span>Examen inclus</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center text-gray-600">
+                <p>Les prix sont indicatifs - contactez-nous pour un devis personnalisé selon vos besoins.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Notre auto-école</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Découvrez nos installations, nos véhicules et nos élèves en action.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Véhicule auto-école" class="w-full h-64 object-cover">
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Formation moto" class="w-full h-64 object-cover">
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1605559421013-0be325f5a567?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Simulateur de conduite" class="w-full h-64 object-cover">
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cours en salle" class="w-full h-64 object-cover">
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Élève en conduite" class="w-full h-64 object-cover">
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1587351020110-ecf34f3376f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Moniteur et élève" class="w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section id="reviews" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Témoignages de nos élèves</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ne croyez pas seulement ce que nous disons - écoutez nos élèves satisfaits.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="testimonial-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">J</div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Julien</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Les moniteurs de Conduite Zen sont incroyablement patients et compétents. J'ai réussi mon permis du premier coup grâce à leurs excellentes méthodes pédagogiques."</p>
+                    <p class="text-sm text-gray-500">15 mars 2023</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">S</div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sophie</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"J'étais stressée à l'idée d'apprendre à conduire à 35 ans, mais mon moniteur m'a mise complètement à l'aise. Les horaires flexibles étaient parfaits pour ma vie bien remplie."</p>
+                    <p class="text-sm text-gray-500">28 janvier 2023</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="testimonial-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">A</div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Amélie</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Le stage intensif était exactement ce dont j'avais besoin. En seulement deux semaines, je suis passée de novice à l'obtention de mon permis haut la main !"</p>
+                    <p class="text-sm text-gray-500">5 mai 2023</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:text-secondary">
+                    Lire plus d'avis sur Google
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Questions fréquentes</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trouvez des réponses aux questions courantes sur notre auto-école.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition">
+                        <span class="font-medium text-gray-900">Quels documents dois-je fournir pour m'inscrire ?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Vous devrez fournir :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Une pièce d'identité valide (passeport ou carte d'identité)</li>
+                                <li>Un justificatif de domicile (de moins de 3 mois)</li>
+                                <li>Deux photos d'identité récentes</li>
+                                <li>Si vous êtes mineur, une autorisation parentale</li>
+                                <li>Pour la conduite accompagnée, les documents de l'accompagnateur</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition">
+                        <span class="font-medium text-gray-900">Puis-je payer en plusieurs fois ?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Oui, nous proposons des solutions de paiement flexibles adaptées à votre budget. Vous pouvez choisir de :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Payer la totalité en une fois</li>
+                                <li>Payer en 2 ou 3 fois sans frais supplémentaires</li>
+                                <li>Mettre en place un paiement mensuel pour des arrangements plus longs</li>
+                            </ul>
+                            <p class="mt-2">Nous trouverons ensemble une solution adaptée à votre situation financière.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition">
+                        <span class="font-medium text-gray-900">Combien de temps dure la formation ?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>La durée de la formation dépend de plusieurs facteurs :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Votre rythme d'apprentissage et disponibilités</li>
+                                <li>Le type de formation choisie (standard ou intensive)</li>
+                                <li>Votre expérience préalable de conduite</li>
+                            </ul>
+                            <p class="mt-2">En moyenne, la plupart des élèves terminent leur formation en 2 à 4 mois avec notre programme standard. Notre stage intensif peut vous préparer en seulement 2 semaines.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition">
+                        <span class="font-medium text-gray-900">Proposez-vous des cours de code en ligne ?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Oui ! Nous proposons des cours de code en ligne complets via notre plateforme partenaire. Les fonctionnalités incluent :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Leçons interactives disponibles 24h/24</li>
+                                <li>Tests blancs simulant l'examen réel</li>
+                                <li>Suivi de progression pour mesurer vos améliorations</li>
+                                <li>Support de nos moniteurs via chat ou visioconférence</li>
+                            </ul>
+                            <p class="mt-2">Vous pouvez aussi combiner l'apprentissage en ligne avec des séances en présentiel si vous préférez.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-16 bg-primary text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Contactez-nous</h2>
+                <p class="text-lg opacity-90 max-w-2xl mx-auto">Des questions sur nos formations ? Prêt à commencer votre apprentissage de la conduite ? Contactez-nous dès aujourd'hui !</p>
+            </div>
+            
+            <form id="contact-form" class="bg-white rounded-xl shadow-lg p-6 md:p-8 text-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="first-name" class="block text-gray-700 font-medium mb-2">Prénom</label>
+                        <input type="text" id="first-name" name="first-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                    </div>
+                    <div>
+                        <label for="last-name" class="block text-gray-700 font-medium mb-2">Nom</label>
+                        <input type="text" id="last-name" name="last-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
+                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="program" class="block text-gray-700 font-medium mb-2">Formation souhaitée</label>
+                    <select id="program" name="program" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="">Sélectionnez une formation</option>
+                        <option value="car-license">Permis B (Voiture)</option>
+                        <option value="motorcycle-license">Permis Moto (A, A2)</option>
+                        <option value="accompanied-driving">Conduite accompagnée</option>
+                        <option value="supervised-driving">Conduite supervisée</option>
+                        <option value="intensive-course">Stage intensif</option>
+                        <option value="theory-lessons">Cours de code uniquement</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" id="consent" name="consent" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" required>
+                    <label for="consent" class="ml-2 block text-gray-700">
+                        J'autorise Conduite Zen à me contacter au sujet de ma demande.
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-md font-medium hover:bg-blue-700 transition duration-300">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-12 bg-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Besoin d'aide pour obtenir votre permis ? Contactez Conduite Zen dès aujourd'hui !</h2>
+            <a href="#contact" class="inline-block bg-white text-secondary px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-100 transition duration-300 mt-4">Nous contacter</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Conduite Zen</h3>
+                    <address class="not-italic">
+                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> 123 Rue de la Conduite, 69000 Lyon</p>
+                        <p class="mb-2"><i class="fas fa-phone-alt mr-2 text-primary"></i> +33 4 12 34 56 78</p>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2 text-primary"></i> contact@conduitezen.fr</p>
+                    </address>
+                </div>
+                
+                <!-- Opening Hours -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Horaires d'ouverture</h3>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between">
+                            <span>Lundi - Vendredi</span>
+                            <span>8h00 - 19h00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Samedi</span>
+                            <span>9h00 - 17h00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Dimanche</span>
+                            <span>Fermé</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Social & Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Suivez-nous</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">Politique de confidentialité</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Conduite Zen. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle the content
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('transform', 'rotate-180');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.add('transform', 'rotate-180');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Ici vous enverriez normalement les données du formulaire à votre serveur
+            // Pour cette démo, nous affichons simplement une alerte
+            alert('Merci pour votre message ! Nous vous contacterons rapidement.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fermer le menu mobile si ouvert
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
