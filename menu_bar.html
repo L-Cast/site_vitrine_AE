@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Table Ronde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .menu-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+        }
+        
+        .menu-item {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .price-tag {
+            background-color: #D4AF37;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover .price-tag {
+            background-color: #B7950B;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="fixed w-full bg-black bg-opacity-90 text-white z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold">
+                    <span class="text-white">TABLE</span>
+                    <span class="text-yellow-600">RONDE</span>
+                </h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-yellow-500 transition duration-300">Accueil</a>
+                <a href="#beers" class="text-white hover:text-yellow-500 transition duration-300">Boissons</a>
+                <a href="#tapas" class="text-white hover:text-yellow-500 transition duration-300">Tapas</a>
+                <a href="#specials" class="text-white hover:text-yellow-500 transition duration-300">Specials</a>
+            </nav>
+            <div>
+                <a href="index.html" class="btn-gold text-black font-semibold px-6 py-2 rounded-full hover:bg-yellow-600 transition duration-300 hidden md:inline-block">
+                    Retour à l'accueil
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-black bg-opacity-95 pb-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-yellow-500 transition duration-300">Accueil</a>
+                <a href="#beers" class="text-white hover:text-yellow-500 transition duration-300">Boissons</a>
+                <a href="#tapas" class="text-white hover:text-yellow-500 transition duration-300">Tapas</a>
+                <a href="#specials" class="text-white hover:text-yellow-500 transition duration-300">Specials</a>
+                <a href="index.html" class="btn-gold text-black font-semibold px-6 py-2 rounded-full text-center hover:bg-yellow-600 transition duration-300">
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Menu de Table Ronde</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto">Découvrez nos boissons et tapas, soigneusement sélectionnés pour accompagner vos meilleures soirées.</p>
+        </div>
+    </section>
+
+    <!-- Menu Navigation -->
+    <div class="bg-white shadow-md sticky top-16 z-40">
+        <div class="container mx-auto px-6">
+            <div class="flex overflow-x-auto py-4 space-x-6 hide-scrollbar">
+                <a href="#beers" class="whitespace-nowrap px-4 py-2 text-gray-700 hover:text-yellow-600 transition duration-300">Bières</a>
+                <a href="#wines" class="whitespace-nowrap px-4 py-2 text-gray-700 hover:text-yellow-600 transition duration-300">Vins</a>
+                <a href="#cocktails" class="whitespace-nowrap px-4 py-2 text-gray-700 hover:text-yellow-600 transition duration-300">Cocktails</a>
+                <a href="#tapas" class="whitespace-nowrap px-4 py-2 text-gray-700 hover:text-yellow-600 transition duration-300">Tapas</a>
+                <a href="#specials" class="whitespace-nowrap px-4 py-2 text-gray-700 hover:text-yellow-600 transition duration-300">Specials</a>
+                <a href="#non-alcoholic" class="whitespace-nowrap px-4 py-2 text-gray-700 hover:text-yellow-600 transition duration-300">Sans alcool</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beers Section -->
+    <section id="beers" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Bières</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Beer 1 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1614956345679-5eb6f6c422f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Pilsner" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Pilsner</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">5,50€</span>
+                        </div>
+                        <p class="text-gray-600">Bière blonde légère et rafraîchissante</p>
+                    </div>
+                </div>
+                
+                <!-- Beer 2 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600788886248-5df09838d86a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="IPA" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">IPA</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">6,00€</span>
+                        </div>
+                        <p class="text-gray-600">Bière houblonnée avec des arômes fruités</p>
+                    </div>
+                </div>
+                
+                <!-- Beer 3 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618889482928-357704107929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Bière artisanale locale" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Bière artisanale locale</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">7,00€</span>
+                        </div>
+                        <p class="text-gray-600">Notre sélection de brasseries parisiennes</p>
+                    </div>
+                </div>
+                
+                <!-- Beer 4 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1614956345679-5eb6f6c422f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Bière sans alcool" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Bière sans alcool</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">4,00€</span>
+                        </div>
+                        <p class="text-gray-600">Tout le goût sans l'alcool</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wines Section -->
+    <section id="wines" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Vins</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Wine 1 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Vin rouge" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Vin rouge - Château Montmartre</h3>
+                            <div class="flex flex-col items-end">
+                                <span class="price-tag text-black font-semibold px-3 py-1 rounded-full mb-1">7,50€/verre</span>
+                                <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">25€/bouteille</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Un Bordeaux corsé aux arômes de fruits noirs et d'épices</p>
+                    </div>
+                </div>
+                
+                <!-- Wine 2 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Vin blanc" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Vin blanc - Domaine des Rives</h3>
+                            <div class="flex flex-col items-end">
+                                <span class="price-tag text-black font-semibold px-3 py-1 rounded-full mb-1">7,00€/verre</span>
+                                <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">24€/bouteille</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Un vin blanc sec et minéral de la Loire</p>
+                    </div>
+                </div>
+                
+                <!-- Wine 3 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1474722883778-8e0f9a809b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Vin rosé" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Vin rosé - Le Soleil de Provence</h3>
+                            <div class="flex flex-col items-end">
+                                <span class="price-tag text-black font-semibold px-3 py-1 rounded-full mb-1">7,00€/verre</span>
+                                <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">23€/bouteille</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Rosé fruité et frais typique de Provence</p>
+                    </div>
+                </div>
+                
+                <!-- Wine 4 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Vin de la maison" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Vin de la maison</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">5,50€/verre</span>
+                        </div>
+                        <p class="text-gray-600">Notre sélection exclusive, parfaite pour accompagner vos tapas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cocktails Section -->
+    <section id="cocktails" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Cocktails</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cocktail 1 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc1c30d0802?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Mojito" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Mojito</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">8,00€</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Rhum, menthe, citron vert, soda</p>
+                        <p class="text-sm text-gray-500">Un classique rafraîchissant</p>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 2 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551751299-1b51cad309fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Margarita" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Margarita</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">9,00€</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Tequila, triple sec, citron vert</p>
+                        <p class="text-sm text-gray-500">Servie avec ou sans sel</p>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 3 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1605270015904-0e593e4ba2c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Negroni" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Negroni</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">9,50€</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Gin, vermouth rosso, Campari</p>
+                        <p class="text-sm text-gray-500">Un cocktail italien audacieux</p>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 4 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1605270015904-0e593e4ba2c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Old Fashioned" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Old Fashioned</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">10,00€</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Whisky, sucre, angostura</p>
+                        <p class="text-sm text-gray-500">Un classique intemporel</p>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 5 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600788886248-5df09838d86a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Pina Colada" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Pina Colada</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">8,50€</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Rhum, ananas, lait de coco</p>
+                        <p class="text-sm text-gray-500">Un goût de vacances</p>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 6 -->
+                <div class="menu-item bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc1c30d0802?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Cocktail de la maison" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Table Ronde</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">10,50€</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Notre cocktail exclusif à découvrir!</p>
+                        <p class="text-sm text-gray-500">Une création de notre barman</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tapas Section -->
+    <section id="tapas" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Tapas</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tapas 1 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Patatas Bravas" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Patatas Bravas</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">6,50€</span>
+                        </div>
+                        <p class="text-gray-600">Pommes de terre rôties, sauce épicée</p>
+                    </div>
+                </div>
+                
+                <!-- Tapas 2 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1458&q=80" 
+                             alt="Croquettes de jambon" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Croquettes de jambon</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">7,00€</span>
+                        </div>
+                        <p class="text-gray-600">Croquettes crémeuses au jambon ibérique</p>
+                    </div>
+                </div>
+                
+                <!-- Tapas 3 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606755456206-b6f2a5a2f58d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Planche de charcuterie" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Planche de charcuterie</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">12,00€</span>
+                        </div>
+                        <p class="text-gray-600">Variété de jambons, saucissons, fromages</p>
+                    </div>
+                </div>
+                
+                <!-- Tapas 4 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+                             alt="Assortiment de tapas végétariens" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Assortiment végétarien</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">8,00€</span>
+                        </div>
+                        <p class="text-gray-600">Houmous, légumes grillés, olives</p>
+                    </div>
+                </div>
+                
+                <!-- Tapas 5 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1599&q=80" 
+                             alt="Mini burgers" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Mini burgers</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">10,00€</span>
+                        </div>
+                        <p class="text-gray-600">Petits burgers avec viande ou végétarien</p>
+                    </div>
+                </div>
+                
+                <!-- Tapas 6 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562967914-01d3c16b3805?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Calamars frits" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Calamars frits</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">9,00€</span>
+                        </div>
+                        <p class="text-gray-600">Servis avec sauce aioli</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specials Section -->
+    <section id="specials" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Specials</h2>
+            
+            <div class="bg-yellow-50 rounded-xl p-8 shadow-md max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-800">Happy Hour</h3>
+                        <p class="text-lg mb-2 text-yellow-700">17h - 20h</p>
+                        <p class="text-gray-700">Cocktails à -2€</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-800">Tapas du mois</h3>
+                        <div class="flex justify-between items-center">
+                            <p class="text-gray-700">Tacos de poisson</p>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">8,00€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Non-Alcoholic Section -->
+    <section id="non-alcoholic" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Boissons Sans Alcool</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Drink 1 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Sodas" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Sodas</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">3,00€</span>
+                        </div>
+                        <p class="text-gray-600">Coca, Sprite, Fanta</p>
+                    </div>
+                </div>
+                
+                <!-- Drink 2 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Jus frais" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Jus frais</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">4,00€</span>
+                        </div>
+                        <p class="text-gray-600">Orange, pomme, citron</p>
+                    </div>
+                </div>
+                
+                <!-- Drink 3 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc1c30d0802?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Mocktails" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Mocktails</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">6,00€</span>
+                        </div>
+                        <p class="text-gray-600">Mojito sans alcool</p>
+                    </div>
+                </div>
+                
+                <!-- Drink 4 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1561029471-9de8a5d47b38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Eaux" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Eaux</h3>
+                            <span class="price-tag text-black font-semibold px-3 py-1 rounded-full">2,50€</span>
+                        </div>
+                        <p class="text-gray-600">Plates ou gazeuses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold mb-4">
+                        <span class="text-white">TABLE</span>
+                        <span class="text-yellow-600">RONDE</span>
+                    </h2>
+                    <p class="max-w-xs text-gray-400">Le bar où les meilleures soirées commencent à Montmartre, Paris.</p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Accueil</a></li>
+                        <li><a href="#beers" class="text-gray-400 hover:text-white transition duration-300">Bières</a></li>
+                        <li><a href="#wines" class="text-gray-400 hover:text-white transition duration-300">Vins</a></li>
+                        <li><a href="#cocktails" class="text-gray-400 hover:text-white transition duration-300">Cocktails</a></li>
+                        <li><a href="#tapas" class="text-gray-400 hover:text-white transition duration-300">Tapas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-lg font-semibold mb-4">Informations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Mentions légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">CGV</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <p class="text-gray-400 mb-2">137 Rue Montmartre, 75002 Paris</p>
+                    <p class="text-gray-400 mb-4">contact@tableronde-paris.com</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-tiktok text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">© 2023 Table Ronde. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
