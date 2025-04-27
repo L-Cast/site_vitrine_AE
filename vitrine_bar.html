@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Ronde - Bar à Paris</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-gold {
+            background-color: #D4AF37;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            background-color: #B7950B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            scroll-margin-top: 80px;
+        }
+        
+        .cocktail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cocktail-card {
+            transition: all 0.3s ease;
+        }
+        
+        .map-container {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+        
+        .map-container iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+        
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- Header -->
+    <header class="fixed w-full bg-black bg-opacity-90 text-white z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-gold-500">
+                    <span class="text-white">TABLE</span>
+                    <span class="text-yellow-600">RONDE</span>
+                </h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-white hover:text-yellow-500 transition duration-300">Accueil</a>
+                <a href="#reservation" class="nav-link text-white hover:text-yellow-500 transition duration-300">Réservation</a>
+                <a href="#hours" class="nav-link text-white hover:text-yellow-500 transition duration-300">Horaires</a>
+                <a href="#contact" class="nav-link text-white hover:text-yellow-500 transition duration-300">Contact</a>
+            </nav>
+            <div>
+                <a href="https://www.priveteaser.com" target="_blank" class="btn-gold text-black font-semibold px-6 py-2 rounded-full hover:bg-yellow-600 transition duration-300 hidden md:inline-block">
+                    Réservez maintenant
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-black bg-opacity-95 pb-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-yellow-500 transition duration-300">Accueil</a>
+                <a href="#reservation" class="text-white hover:text-yellow-500 transition duration-300">Réservation</a>
+                <a href="#hours" class="text-white hover:text-yellow-500 transition duration-300">Horaires</a>
+                <a href="#contact" class="text-white hover:text-yellow-500 transition duration-300">Contact</a>
+                <a href="https://www.priveteaser.com" target="_blank" class="btn-gold text-black font-semibold px-6 py-2 rounded-full text-center hover:bg-yellow-600 transition duration-300">
+                    Réservez maintenant
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center text-center text-white section">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">TABLE RONDE</h1>
+            <h2 class="text-xl md:text-2xl mb-8 font-light">Le bar où les meilleures soirées commencent.</h2>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">Un lieu moderne, animé, où il fait bon se retrouver entre amis, boire un verre et faire la fête jusqu'à 2h du matin.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="https://www.priveteaser.com" target="_blank" class="btn-gold text-black font-semibold px-8 py-3 rounded-full hover:bg-yellow-600 transition duration-300">
+                    Réservez maintenant
+                </a>
+                <a href="#ambiance" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-300">
+                    Découvrir
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambiance Section -->
+    <section id="ambiance" class="py-20 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Ambiance & Lieu</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                         alt="Intérieur du bar Table Ronde" 
+                         class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">Un cadre unique à Montmartre</h3>
+                    <p class="text-lg mb-6">Table Ronde est un bar élégant et dynamique, niché dans le quartier animé de Montmartre. Notre espace allie modernité et convivialité pour créer une atmosphère inoubliable.</p>
+                    <p class="text-lg">Un grand bar, une salle spacieuse avec des places assises confortables, une ambiance parfaite pour se détendre ou faire la fête. Nos mixologues créent des cocktails uniques qui raviront vos papilles.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1525&q=80" 
+                         alt="Cocktail signature" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Cocktails Signature</h3>
+                        <p class="text-gray-600">Découvrez nos créations uniques élaborées par nos experts mixologues.</p>
+                    </div>
+                </div>
+                
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Ambiance du bar" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Soirées Mémorables</h3>
+                        <p class="text-gray-600">Une atmosphère électrique pour des nuits qui resteront gravées dans votre mémoire.</p>
+                    </div>
+                </div>
+                
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                         alt="Terrasse du bar" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Espace Privatif</h3>
+                        <p class="text-gray-600">Organisez vos événements dans notre espace dédié aux groupes et célébrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-gray-100 section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Réservez votre soirée</h2>
+            <p class="text-xl text-center mb-12 max-w-2xl mx-auto">Réservez votre table ou votre espace privé pour votre prochaine sortie.</p>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6">Options de réservation</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">Réservation standard</h4>
+                            <p class="mb-6">Réservez une table pour votre groupe et profitez de notre ambiance unique.</p>
+                            <a href="https://www.priveteaser.com" target="_blank" class="btn-gold text-black font-semibold px-6 py-2 rounded-full inline-block hover:bg-yellow-600 transition duration-300">
+                                Réserver une table
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold mb-4">Événements privés</h4>
+                            <p class="mb-6">Organisez votre soirée privée, anniversaire ou événement d'entreprise dans notre espace dédié.</p>
+                            <button id="open-event-form" class="btn-gold text-black font-semibold px-6 py-2 rounded-full inline-block hover:bg-yellow-600 transition duration-300">
+                                Demande d'événement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                         alt="Groupe d'amis au bar" 
+                         class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 invisible opacity-0">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-8 relative">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold mb-6">Demande d'événement privé</h3>
+            
+            <form id="event-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
+                    <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                
+                <div>
+                    <label for="phone" class="block text-gray-700 mb-2">Téléphone</label>
+                    <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                
+                <div>
+                    <label for="date" class="block text-gray-700 mb-2">Date prévue</label>
+                    <input type="date" id="date" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                
+                <div>
+                    <label for="guests" class="block text-gray-700 mb-2">Nombre d'invités</label>
+                    <input type="number" id="guests" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-gray-700 mb-2">Détails de votre événement</label>
+                    <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-gold text-black font-semibold px-6 py-3 rounded-full w-full hover:bg-yellow-600 transition duration-300">
+                    Envoyer la demande
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hours Section -->
+    <section id="hours" class="py-20 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Nos Horaires</h2>
+            
+            <div class="max-w-2xl mx-auto bg-gray-100 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-8">
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                        <span class="font-semibold">Lundi - Vendredi</span>
+                        <span class="text-gray-700">17h - 02h</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                        <span class="font-semibold">Samedi</span>
+                        <span class="text-gray-700">14h - 02h</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4">
+                        <span class="font-semibold">Dimanche</span>
+                        <span class="text-gray-700">14h - 02h</span>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6">
+                    <h3 class="text-lg font-semibold mb-2 text-yellow-800">Fermetures exceptionnelles</h3>
+                    <p class="text-yellow-700">Le bar sera fermé le 25 décembre et le 1er janvier. Les horaires peuvent être modifiés lors des jours fériés.</p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold mb-6">Happy Hours</h3>
+                <p class="text-xl mb-6">Profitez de nos offres spéciales tous les jours de 17h à 20h</p>
+                <p class="text-lg text-gray-600">-25% sur tous les cocktails et vins sélectionnés</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100 section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Nous Contacter</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-xl h-full">
+                        <h3 class="text-2xl font-bold mb-6">Informations</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-yellow-600 mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Adresse</h4>
+                                    <p class="text-gray-600">137 Rue Montmartre, 75002 Paris, France</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-yellow-600 mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Téléphone</h4>
+                                    <p class="text-gray-600">+33 1 23 45 67 89</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-yellow-600 mr-4 mt-1">
+                                    <i class="fas fa-envelope text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Email</h4>
+                                    <p class="text-gray-600">contact@tableronde-paris.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-yellow-600 mr-4 mt-1">
+                                    <i class="fas fa-hashtag text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Réseaux sociaux</h4>
+                                    <div class="flex space-x-4 mt-2">
+                                        <a href="#" class="text-gray-600 hover:text-yellow-600 transition duration-300">
+                                            <i class="fab fa-instagram text-2xl"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-600 hover:text-yellow-600 transition duration-300">
+                                            <i class="fab fa-facebook text-2xl"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-600 hover:text-yellow-600 transition duration-300">
+                                            <i class="fab fa-tiktok text-2xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-semibold text-lg mb-4">Nous trouver</h4>
+                            <div class="map-container rounded-lg overflow-hidden shadow">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.373222511677!2d2.343215315675114!3d48.8676801792889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e38b8400b6d%3A0x6a1b5c3b3d4e4e1f!2s137%20Rue%20Montmartre%2C%2075002%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1623250000000!5m2!1sen!2sus" 
+                                        allowfullscreen="" 
+                                        loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-xl h-full">
+                        <h3 class="text-2xl font-bold mb-6">Formulaire de contact</h3>
+                        
+                        <form class="space-y-6">
+                            <div>
+                                <label for="contact-name" class="block text-gray-700 mb-2">Nom complet</label>
+                                <input type="text" id="contact-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="contact-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-subject" class="block text-gray-700 mb-2">Sujet</label>
+                                <input type="text" id="contact-subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="contact-message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-gold text-black font-semibold px-6 py-3 rounded-full w-full hover:bg-yellow-600 transition duration-300">
+                                Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Événements à venir</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1514525257171-4707a0bd9889?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Soirée Jazz" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            15 Juin
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Soirée Jazz & Cocktails</h3>
+                        <p class="text-gray-600 mb-4">Une nuit dédiée au jazz avec des performances live et des cocktails spéciaux.</p>
+                        <a href="#reservation" class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300 inline-flex items-center">
+                            Réserver <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="DJ Night" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            22 Juin
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">DJ Night - Spécial Été</h3>
+                        <p class="text-gray-600 mb-4">Notre DJ résident vous emmène dans un voyage musical jusqu'au petit matin.</p>
+                        <a href="#reservation" class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300 inline-flex items-center">
+                            Réserver <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Dégustation de vin" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            29 Juin
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Dégustation de Vins Français</h3>
+                        <p class="text-gray-600 mb-4">Découvrez une sélection des meilleurs vins de France accompagnés de fromages artisanaux.</p>
+                        <a href="#reservation" class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300 inline-flex items-center">
+                            Réserver <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block px-6 py-3 border-2 border-yellow-600 text-yellow-600 font-semibold rounded-full hover:bg-yellow-600 hover:text-white transition duration-300">
+                    Voir tous les événements
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold mb-4">
+                        <span class="text-white">TABLE</span>
+                        <span class="text-yellow-600">RONDE</span>
+                    </h2>
+                    <p class="max-w-xs text-gray-400">Le bar où les meilleures soirées commencent à Montmartre, Paris.</p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Accueil</a></li>
+                        <li><a href="#ambiance" class="text-gray-400 hover:text-white transition duration-300">Ambiance</a></li>
+                        <li><a href="#reservation" class="text-gray-400 hover:text-white transition duration-300">Réservation</a></li>
+                        <li><a href="#hours" class="text-gray-400 hover:text-white transition duration-300">Horaires</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-lg font-semibold mb-4">Informations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Mentions légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">CGV</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos actualités et offres spéciales.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-black w-full">
+                        <button type="submit" class="bg-yellow-600 text-black px-4 py-2 rounded-r-lg hover:bg-yellow-700 transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Table Ronde. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Modal functionality
+        const openModalButton = document.getElementById('open-event-form');
+        const closeModalButton = document.getElementById('close-modal');
+        const modal = document.getElementById('event-modal');
+        
+        openModalButton.addEventListener('click', () => {
+            modal.classList.remove('invisible', 'opacity-0');
+            modal.classList.add('visible', 'opacity-100');
+        });
+        
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.remove('visible', 'opacity-100');
+            modal.classList.add('invisible', 'opacity-0');
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('visible', 'opacity-100');
+                modal.classList.add('invisible', 'opacity-0');
+            }
+        });
+        
+        // Form submission
+        const eventForm = document.getElementById('event-form');
+        
+        eventForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            alert('Merci pour votre demande ! Nous vous contacterons bientôt pour confirmer votre événement.');
+            
+            // Reset form and close modal
+            eventForm.reset();
+            modal.classList.remove('visible', 'opacity-100');
+            modal.classList.add('invisible', 'opacity-0');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
