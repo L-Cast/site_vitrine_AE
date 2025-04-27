@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebLocal - Création de sites web économiques</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #22c55e, #10b981);
+        }
+        .shape-blob {
+            background: #4ade80;
+            height: 200px;
+            width: 200px;
+            border-radius: 30% 50% 20% 40%;
+            position: absolute;
+            opacity: 0.2;
+            filter: blur(40px);
+            z-index: -1;
+        }
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+        .btn-hover-effect:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .team-card:hover .team-img {
+            transform: scale(1.05);
+        }
+        .team-img {
+            transition: transform 0.5s ease;
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-top-color: #22c55e;
+        }
+        .price-card {
+            transition: all 0.3s ease;
+        }
+        .price-card:hover {
+            transform: scale(1.03);
+        }
+        .price-card.popular {
+            border: 2px solid #22c55e;
+            position: relative;
+            overflow: hidden;
+        }
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #22c55e;
+            color: white;
+            padding: 0.25rem 1.5rem;
+            font-size: 0.875rem;
+            transform: translate(25%, -50%) rotate(45deg);
+            transform-origin: center;
+            width: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="font-sans bg-white text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center glass-effect rounded-full px-6 py-3">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center mr-3">
+                        <i class="fas fa-globe text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold">WebLocal</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="font-medium hover:text-primary-500 transition">Accueil</a>
+                    <a href="#portfolio" class="hover:text-primary-500 transition">Réalisations</a>
+                    <a href="#avantages" class="hover:text-primary-500 transition">Nos avantages</a>
+                    <a href="#formules" class="hover:text-primary-500 transition">Nos formules</a>
+                    <a href="#equipe" class="hover:text-primary-500 transition">Équipe</a>
+                    <a href="#contact" class="hover:text-primary-500 transition">Contact</a>
+                </nav>
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+        <div class="shape-blob top-1/4 -left-20"></div>
+        <div class="shape-blob bottom-1/4 -right-20 bg-accent-500"></div>
+        
+        <div class="container mx-auto px-6 relative">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="gradient-text">Votre site web</span><br>
+                        rapide, pas cher et efficace
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-lg">
+                        Des sites vitrines professionnels conçus pour les commerces locaux et petites entreprises. 
+                        Optimisés pour le référencement et adaptés à vos besoins.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="flex items-center bg-primary-50 text-primary-700 px-4 py-2 rounded-full">
+                            <i class="fas fa-euro-sign mr-2"></i>
+                            <span>Prix imbattables</span>
+                        </div>
+                        <div class="flex items-center bg-primary-50 text-primary-700 px-4 py-2 rounded-full">
+                            <i class="fas fa-bolt mr-2"></i>
+                            <span>Livraison rapide</span>
+                        </div>
+                        <div class="flex items-center bg-primary-50 text-primary-700 px-4 py-2 rounded-full">
+                            <i class="fas fa-hands-helping mr-2"></i>
+                            <span>Accompagnement</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="btn-hover-effect bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-full font-medium text-center">
+                            Demander un devis
+                        </a>
+                        <a href="#formules" class="btn-hover-effect border-2 border-primary-500 text-primary-500 hover:bg-primary-50 px-8 py-4 rounded-full font-medium text-center">
+                            Voir nos formules
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center relative">
+                    <div class="relative">
+                        <div class="w-full h-full bg-primary-100 rounded-3xl absolute -bottom-4 -right-4"></div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Site web professionnel" 
+                             class="relative rounded-3xl border-8 border-white shadow-2xl max-w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-primary-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos dernières réalisations</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Découvrez comment nous avons aidé d'autres entreprises comme la vôtre
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Projet 1" 
+                         class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-2">Boulangerie du Village</h3>
+                            <p class="text-primary-200">Site vitrine • SEO local</p>
+                            <div class="flex items-center mt-2">
+                                <i class="fas fa-euro-sign text-primary-200 mr-1"></i>
+                                <span class="text-primary-200 text-sm">À partir de 990€</span>
+                                <span class="mx-2 text-primary-200">•</span>
+                                <i class="fas fa-clock text-primary-200 mr-1"></i>
+                                <span class="text-primary-200 text-sm">Livré en 7 jours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Projet 2" 
+                         class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-2">Auto-École Conduite Facile</h3>
+                            <p class="text-primary-200">Site vitrine • Formulaire de contact</p>
+                            <div class="flex items-center mt-2">
+                                <i class="fas fa-euro-sign text-primary-200 mr-1"></i>
+                                <span class="text-primary-200 text-sm">À partir de 790€</span>
+                                <span class="mx-2 text-primary-200">•</span>
+                                <i class="fas fa-clock text-primary-200 mr-1"></i>
+                                <span class="text-primary-200 text-sm">Livré en 5 jours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Projet 3" 
+                         class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-2">Marie Photographie</h3>
+                            <p class="text-primary-200">Portfolio • Galerie photo</p>
+                            <div class="flex items-center mt-2">
+                                <i class="fas fa-euro-sign text-primary-200 mr-1"></i>
+                                <span class="text-primary-200 text-sm">À partir de 1190€</span>
+                                <span class="mx-2 text-primary-200">•</span>
+                                <i class="fas fa-clock text-primary-200 mr-1"></i>
+                                <span class="text-primary-200 text-sm">Livré en 10 jours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex items-center px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-full font-medium transition-all duration-300">
+                    Voir plus de projets
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avantages Section -->
+    <section id="avantages" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pourquoi choisir WebLocal ?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Notre approche simple et efficace pour votre présence en ligne
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Avantage 1 -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-primary-500">
+                    <div class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-euro-sign text-primary-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Des prix imbattables</h3>
+                    <p class="text-gray-600">
+                        Nous proposons des solutions adaptées aux petits budgets sans compromis sur la qualité.
+                    </p>
+                    <div class="mt-6">
+                        <span class="text-primary-500 font-bold text-lg">Jusqu'à -50%</span>
+                        <span class="text-gray-500 ml-2">vs les agences traditionnelles</span>
+                    </div>
+                </div>
+                
+                <!-- Avantage 2 -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-primary-500">
+                    <div class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-primary-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Délais express</h3>
+                    <p class="text-gray-600">
+                        Un processus optimisé pour vous livrer un site professionnel en un temps record.
+                    </p>
+                    <div class="mt-6">
+                        <span class="text-primary-500 font-bold text-lg">Dès 5 jours</span>
+                        <span class="text-gray-500 ml-2">pour un site clé en main</span>
+                    </div>
+                </div>
+                
+                <!-- Avantage 3 -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-primary-500">
+                    <div class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-hands-helping text-primary-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Accompagnement complet</h3>
+                    <p class="text-gray-600">
+                        De la conception à la mise en ligne, nous vous guidons à chaque étape.
+                    </p>
+                    <div class="mt-6">
+                        <span class="text-primary-500 font-bold text-lg">1 mois inclus</span>
+                        <span class="text-gray-500 ml-2">de support après livraison</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formules Section -->
+    <section id="formules" class="py-20 bg-primary-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos formules clé en main</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Choisissez la solution qui correspond à vos besoins et à votre budget
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Formule 1 -->
+                <div class="price-card bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-2">Formule Essentielle</h3>
+                    <p class="text-gray-600 mb-6">Parfaite pour démarrer votre présence en ligne</p>
+                    
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-primary-500">790€</span>
+                        <span class="text-gray-500">/site</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>5 pages maximum</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Design responsive</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Formulaire de contact</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Optimisation SEO de base</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Livraison en 7 jours</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition duration-300">
+                        Choisir cette formule
+                    </a>
+                </div>
+                
+                <!-- Formule 2 -->
+                <div class="price-card popular bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="popular-badge">Populaire</div>
+                    <h3 class="text-2xl font-bold mb-2">Formule Professionnelle</h3>
+                    <p class="text-gray-600 mb-6">Solution complète pour une présence en ligne optimale</p>
+                    
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-primary-500">1290€</span>
+                        <span class="text-gray-500">/site</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>10 pages maximum</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Design responsive premium</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Formulaire de contact + newsletter</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Optimisation SEO avancée</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Galerie photo/vidéo</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>Livraison en 10 jours</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary-500 mr-3"></i>
+                            <span>1 mois de support inclus</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition duration-300">
+                        Choisir cette formule
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-6">
+                    Besoin d'une solution sur-mesure ? Nous adaptons nos formules à vos besoins spécifiques.
+                </p>
+                <a href="#contact" class="inline-flex items-center px-6 py-3 border-2 border-primary-500 text-primary-500 hover:bg-primary-50 rounded-lg font-medium transition duration-300">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Demander un devis personnalisé
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equipe" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Notre équipe passionnée</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Rencontrez les experts qui donnent vie à vos projets
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <!-- Pierre -->
+                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                             alt="Pierre" 
+                             class="team-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="text-white text-2xl font-bold">Pierre</h3>
+                            <p class="text-primary-200">Expert en Marketing Digital</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-primary-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Formation</h4>
+                                <p class="text-sm text-gray-600">École de Commerce - Spécialité Marketing Digital</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Pierre transforme votre présence en ligne en une véritable machine à convertir les visiteurs en clients. Spécialiste des stratégies digitales, il optimise chaque aspect de votre site pour maximiser son impact.
+                        </p>
+                        <div class="flex space-x-3">
+                            <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm">Stratégie digitale</span>
+                            <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm">SEO</span>
+                            <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Léa -->
+                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" 
+                             alt="Léa" 
+                             class="team-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="text-white text-2xl font-bold">Léa</h3>
+                            <p class="text-primary-200">Data Scientist & IA</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-robot text-accent-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Formation</h4>
+                                <p class="text-sm text-gray-600">Data Science & Intelligence Artificielle</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Léa intègre les dernières technologies d'IA pour personnaliser l'expérience utilisateur de votre site. Ses algorithmes analysent le comportement des visiteurs pour proposer des solutions sur-mesure et augmenter l'engagement.
+                        </p>
+                        <div class="flex space-x-3">
+                            <span class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm">IA</span>
+                            <span class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm">Analyse de données</span>
+                            <span class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm">Personnalisation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+                    Notre duo complémentaire combine créativité et technologie pour offrir des solutions digitales innovantes et performantes.
+                </p>
+                <a href="#contact" class="inline-flex items-center px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-full font-medium transition-all duration-300">
+                    Travaillons ensemble
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-accent-500 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Prêt à booster votre activité ?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Un site web professionnel à petit prix et livré rapidement, c'est possible !
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="inline-block bg-white text-primary-600 px-8 py-4 rounded-full font-medium shadow-lg hover:bg-gray-100 transition duration-300">
+                    Demander un devis
+                </a>
+                <a href="#formules" class="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition duration-300">
+                    Voir nos formules
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-primary-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-12">
+                        <h2 class="text-3xl font-bold mb-6">Contactez-nous</h2>
+                        <form>
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Votre nom</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Votre email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Votre message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary-500 hover:bg-primary-600 text-white px-6 py-4 rounded-lg font-medium transition duration-300">
+                                Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-12 bg-primary-500 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Nos coordonnées</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Téléphone</h4>
+                                    <p class="text-primary-100">+33 6 12 34 56 78</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-primary-100">contact@weblocal.fr</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Adresse</h4>
+                                    <p class="text-primary-100">123 Rue des Entrepreneurs<br>69000 Lyon</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Horaires</h4>
+                                    <p class="text-primary-100">Lundi au Vendredi<br>9h00 - 18h00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="font-medium mb-4">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary-700 flex items-center justify-center mr-3">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <span class="text-xl font-bold">WebLocal</span>
+                    </div>
+                    <p class="text-primary-300">
+                        Création de sites vitrines professionnels pour les petites entreprises et commerces locaux.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-primary-300 hover:text-white transition">Accueil</a></li>
+                        <li><a href="#portfolio" class="text-primary-300 hover:text-white transition">Réalisations</a></li>
+                        <li><a href="#avantages" class="text-primary-300 hover:text-white transition">Nos avantages</a></li>
+                        <li><a href="#formules" class="text-primary-300 hover:text-white transition">Nos formules</a></li>
+                        <li><a href="#equipe" class="text-primary-300 hover:text-white transition">Équipe</a></li>
+                        <li><a href="#contact" class="text-primary-300 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-primary-300 hover:text-white transition">Sites vitrines</a></li>
+                        <li><a href="#" class="text-primary-300 hover:text-white transition">SEO local</a></li>
+                        <li><a href="#" class="text-primary-300 hover:text-white transition">Design responsive</a></li>
+                        <li><a href="#" class="text-primary-300 hover:text-white transition">Maintenance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-primary-300 mb-4">
+                        Abonnez-vous pour recevoir nos conseils et offres spéciales.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-accent-500 hover:bg-accent-600 text-white px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-primary-300 mb-4 md:mb-0">
+                    &copy; 2023 WebLocal. Tous droits réservés.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-primary-300 hover:text-white transition">Mentions légales</a>
+                    <a href="#" class="text-primary-300 hover:text-white transition">Politique de confidentialité</a>
+                    <a href="#" class="text-primary-300 hover:text-white transition">CGV</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.md\\:hidden').addEventListener('click', function() {
+            // In a real implementation, this would toggle a mobile menu
+            console.log('Mobile menu clicked');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
