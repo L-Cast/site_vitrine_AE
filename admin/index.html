@@ -7,7 +7,17 @@
   <body>
     <h1>Bienvenue dans l'administration</h1>
 
-    <!-- Placer le script ici, juste avant la fermeture de la balise </body> -->
-  <script src="https://cdn.jsdelivr.net/npm/netlify-cms/dist/netlify-cms.js"></script>
+    <!-- Ajouter le widget d'identité Netlify ici -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Script pour initialiser Netlify Identity -->
+    <script type="text/javascript">
+      if (window.netlifyIdentity) {
+        netlifyIdentity.init();
+      }
+    </script>
+
+    <!-- Placer le script Netlify CMS ici -->
+    <script src="https://cdn.jsdelivr.net/npm/netlify-cms/dist/netlify-cms.js"></script>
   </body>
 </html>
