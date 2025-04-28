@@ -11,7 +11,7 @@ collections:
     files:
       - file: "index.html"
         label: "Modifier la page d'accueil"
-        name: "index"   # <-- Ajoutez un nom ici pour identifier ce fichier.
+        name: "index"   # Cette ligne doit être présente
         fields:
           - label: "Titre principal"
             name: "hero_title"
@@ -22,3 +22,18 @@ collections:
           - label: "Image principale accueil"
             name: "hero_image"
             widget: "image"
+          - label: "Prix Vitrine Bar"
+            name: "prix_bar"
+            widget: "string"
+          - label: "Prix Vitrine Coiffure"
+            name: "prix_coiffure"
+            widget: "string"
+          - label: "Prix Vitrine Auto École"
+            name: "prix_auto_ecole"
+            widget: "string"
+          - label: "Formule Essentielle - Prix"
+            name: "formule_essentielle_prix"
+            widget: "string"
+          - label: "Formule Professionnelle - Prix"
+            name: "formule_professionnelle_prix"
+            widget: "string"
