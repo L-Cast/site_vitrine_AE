@@ -11,6 +11,7 @@ collections:
     files:
       - file: "index.html"
         label: "Modifier la page d'accueil"
+        name: "index"   # <-- Ajoutez un nom ici pour identifier ce fichier.
         fields:
           - label: "Titre principal"
             name: "hero_title"
@@ -21,14 +22,3 @@ collections:
           - label: "Image principale accueil"
             name: "hero_image"
             widget: "image"
-
-roles:
-  - name: "Editor"
-    permissions:
-      - edit_content
-      - create_content
-  - name: "Admin"
-    permissions:
-      - manage_users
-      - edit_content
-      - create_content
