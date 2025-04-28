@@ -6,12 +6,19 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "pages"
-    label: "Pages"
+  - name: "index"
+    label: "Page d'accueil"
     files:
       - file: "index.html"
-        label: "Page d'accueil"
+        label: "Modifier la page d'accueil"
+        name: "index"   # <-- Ajoutez un nom ici pour identifier ce fichier.
         fields:
           - label: "Titre principal"
             name: "hero_title"
             widget: "string"
+          - label: "Texte d'introduction"
+            name: "hero_intro"
+            widget: "text"
+          - label: "Image principale accueil"
+            name: "hero_image"
+            widget: "image"
