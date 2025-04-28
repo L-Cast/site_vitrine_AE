@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main # ou 'master' selon ton GitHub
+
+media_folder: "images/uploads" 
+public_folder: "/images/uploads"
+
+collections:
+  - name: "site"
+    label: "Contenu du site"
+    files:
+      - file: "index.html"
+        label: "Page d'accueil"
+        fields:
+          - { label: "Titre principal", name: "titre", widget: "string" }
+          - { label: "Texte d'intro", name: "intro", widget: "text" }
+          - { label: "Prix Produit 1", name: "prix1", widget: "string" }
+          - { label: "Prix Produit 2", name: "prix2", widget: "string" }
+          - { label: "Image Principale", name: "main_image", widget: "image" }
