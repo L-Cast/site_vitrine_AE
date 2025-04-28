@@ -3,11 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Administration WebLocal</title>
+    <script src="https://cdn.jsdelivr.net/npm/netlify-cms/dist/netlify-cms.js"></script>
   </head>
   <body>
-    <h1>Bienvenue dans l'administration</h1>
+    <!-- Placer le script de Netlify Identity ici -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-    <!-- Placer le script ici, juste avant la fermeture de la balise </body> -->
-  <script src="https://cdn.jsdelivr.net/npm/netlify-cms/dist/netlify-cms.js"></script>
+    <script>
+      // Initialisation du widget Identity
+      if (window.NetlifyIdentity) {
+        window.NetlifyIdentity.on('init', function(user) {
+          console.log(user);
+        });
+
+        // Fonction pour ouvrir le widget de connexion lorsque l'utilisateur arrive sur la page
+        window.NetlifyIdentity.open();
+      }
+    </script>
   </body>
 </html>
