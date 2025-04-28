@@ -1,19 +1,40 @@
 backend:
   name: git-gateway
-  branch: main # ou 'master' selon ton GitHub
+  branch: main
 
-media_folder: "images/uploads" 
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "site"
-    label: "Contenu du site"
+  - name: "index"
+    label: "Page d'accueil"
     files:
       - file: "index.html"
-        label: "Page d'accueil"
+        label: "Modifier la page d'accueil"
         fields:
-          - { label: "Titre principal", name: "titre", widget: "string" }
-          - { label: "Texte d'intro", name: "intro", widget: "text" }
-          - { label: "Prix Produit 1", name: "prix1", widget: "string" }
-          - { label: "Prix Produit 2", name: "prix2", widget: "string" }
-          - { label: "Image Principale", name: "main_image", widget: "image" }
+          - label: "Titre principal"
+            name: "hero_title"
+            widget: "string"
+          - label: "Texte d'introduction"
+            name: "hero_intro"
+            widget: "text"
+          - label: "Image principale accueil"
+            name: "hero_image"
+            widget: "image"
+
+          - label: "Prix Vitrine Bar"
+            name: "prix_bar"
+            widget: "string"
+          - label: "Prix Vitrine Coiffure"
+            name: "prix_coiffure"
+            widget: "string"
+          - label: "Prix Vitrine Auto École"
+            name: "prix_auto_ecole"
+            widget: "string"
+
+          - label: "Formule Essentielle - Prix"
+            name: "formule_essentielle_prix"
+            widget: "string"
+          - label: "Formule Professionnelle - Prix"
+            name: "formule_professionnelle_prix"
+            widget: "string"
